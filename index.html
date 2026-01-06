@@ -9,44 +9,81 @@
 
 </head>
 
-<body class="bg-neutral-50 text-neutral-900 font-sans">
+<body class="bg-neutral-100 text-neutral-900 font-sans">
 
-  <main class="max-w-md mx-auto p-6">
-    <h1 class="text-xl font-bold text-center mb-4">
-      Sudoku FALLTEM
-    </h1>
+  <!-- Botón ayuda -->
+  <button
+    id="help-btn"
+    class="fixed top-4 right-4 w-10 h-10 rounded-full border-2 border-neutral-400 text-neutral-600 font-bold flex items-center justify-center"
+    aria-label="Ayuda"
+  >
+    ?
+  </button>
 
-    <p class="text-base text-center mb-6">
-      Ejercicio diario para estimular la atención y la concentración.
-      Podés hacerlo a tu propio ritmo.
-    </p>
+  <main class="min-h-screen flex items-center justify-center p-4">
 
-    <section
-      id="sudoku-board"
-      class="grid grid-cols-9 gap-1 mb-6"
-    >
-      <!-- celdas -->
-    </section>
+    <div class="bg-white rounded-xl shadow-md w-full max-w-2xl p-6">
 
-    <div class="flex justify-between">
-      <button
-        id="clear-btn"
-        class="px-4 py-2 text-base bg-neutral-200 rounded"
-      >
-        Borrar
-      </button>
+      <!-- INTRO -->
+      <section id="intro-screen">
+        <p class="text-sm uppercase tracking-wide text-neutral-500 mb-2">
+          Juegos cognitivos FALLTEM
+        </p>
 
-      <button
-        id="check-btn"
-        class="px-4 py-2 text-base bg-neutral-800 text-white rounded"
-      >
-        Verificar
-      </button>
+        <h1 class="text-3xl font-bold mb-4">
+          Sudoku FALLTEM
+        </h1>
+
+        <p class="text-lg mb-6">
+          Este ejercicio ayuda a entrenar la atención y la concentración.
+          No hay límite de tiempo. Podés hacerlo a tu propio ritmo.
+        </p>
+
+        <button
+          id="start-btn"
+          class="w-full bg-green-500 hover:bg-green-600 text-white text-lg font-semibold py-3 rounded-lg"
+        >
+          Comenzar
+        </button>
+      </section>
+
+      <!-- JUEGO -->
+      <section id="game-screen" class="hidden">
+
+        <h2 class="text-2xl font-bold text-center mb-4">
+          Sudoku
+        </h2>
+
+        <section
+          id="sudoku-board"
+          class="grid grid-cols-9 gap-1 mb-6 justify-center"
+        ></section>
+
+        <div class="flex justify-between">
+          <button
+            id="clear-btn"
+            class="px-4 py-2 text-base bg-neutral-200 rounded"
+          >
+            Borrar
+          </button>
+
+          <button
+            id="check-btn"
+            class="px-4 py-2 text-base bg-neutral-800 text-white rounded"
+          >
+            Verificar
+          </button>
+        </div>
+
+      </section>
+
     </div>
+
   </main>
 
   <script src="js/storage.js"></script>
   <script src="js/sudoku-core.js"></script>
   <script src="js/sudoku-ui.js"></script>
 </body>
+
 </html>
