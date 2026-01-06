@@ -1,17 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Elementos
   const btnComenzar = document.getElementById("btnComenzar");
   const intro = document.getElementById("intro");
   const juego = document.getElementById("juego");
 
-  // Seguridad básica
+  const aboutBtn = document.getElementById("aboutBtn");
+  const aboutModal = document.getElementById("aboutModal");
+  const modalClose = aboutModal?.querySelector(".modal-close");
+  const modalOk = aboutModal?.querySelector(".modal-actions .btn");
+
+  // Seguridad
   if (!btnComenzar || !intro || !juego) {
     console.error("FALLTEM Sudoku: elementos base no encontrados");
     return;
   }
 
-  // Click en Comenzar
+  // --- Comenzar ---
   btnComenzar.addEventListener("click", () => {
     intro.hidden = true;
     juego.hidden = false;
@@ -19,7 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTableroVacio();
   });
 
-  // Render tablero vacío (provisorio)
+  // --- Modal ? ---
+  if (aboutBtn && aboutModal) {
+    aboutBtn.addEventListener("click", () => {
+      aboutModal.setAttribute("aria-hidden", "false");
+    });
+  }
+
+  if (modalClose) {
+    modalClose.addEventListener("click", cerrarModal);
+  }
+
+  if (modalOk) {
+    modalOk.addEventListener("click", cerrarModal);
+  }
+
+  function cerrarModal() {
+    aboutModal.setAttribute("aria-hidden", "true");
+  }
+
+  // --- Tablero provisorio ---
   function renderTableroVacio() {
     juego.innerHTML = "";
 

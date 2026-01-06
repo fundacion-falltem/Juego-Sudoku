@@ -4,9 +4,10 @@
 .wrap{
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* 👈 antes center */
   justify-content: center;
-  padding: calc(var(--space) * 1.2);
+  padding: calc(var(--space) * 1.5);
+  padding-top: 6vh; /* 👈 empuja el card hacia arriba */
 }
 
 .card{
@@ -39,4 +40,8 @@
   font-weight: 900;
   font-size: 1.25rem;
   user-select: none;
+}
+
+.header-label--brand{
+  color: var(--brand);
 }
