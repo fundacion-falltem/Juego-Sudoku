@@ -9,3 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     board.appendChild(cell);
   }
 });
+
+window.onerror = function (message, source, lineno, colno, error) {
+  console.error("FALLTEM Sudoku error:", message, lineno);
+};
+
