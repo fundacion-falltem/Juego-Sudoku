@@ -94,3 +94,8 @@
   font-weight: 700;
   border-radius: 10px;
 }
+
+.sudoku-cell.conflict{
+  background: #fff7cc;
+  border-color: #f5c542;
+}
