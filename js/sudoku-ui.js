@@ -1,26 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const introScreen = document.getElementById("intro-screen");
-  const gameScreen = document.getElementById("game-screen");
-  const startBtn = document.getElementById("start-btn");
-  const board = document.getElementById("sudoku-board");
 
-  startBtn.addEventListener("click", () => {
-    introScreen.classList.add("hidden");
-    gameScreen.classList.remove("hidden");
-    renderEmptyBoard();
+  // Elementos
+  const btnComenzar = document.getElementById("btnComenzar");
+  const intro = document.getElementById("intro");
+  const juego = document.getElementById("juego");
+
+  // Seguridad básica
+  if (!btnComenzar || !intro || !juego) {
+    console.error("FALLTEM Sudoku: elementos base no encontrados");
+    return;
+  }
+
+  // Click en Comenzar
+  btnComenzar.addEventListener("click", () => {
+    intro.hidden = true;
+    juego.hidden = false;
+
+    renderTableroVacio();
   });
 
-  function renderEmptyBoard() {
-    board.innerHTML = "";
+  // Render tablero vacío (provisorio)
+  function renderTableroVacio() {
+    juego.innerHTML = "";
+
+    const grid = document.createElement("div");
+    grid.className = "sudoku-grid";
 
     for (let i = 0; i < 81; i++) {
       const cell = document.createElement("div");
-      cell.className =
-        "aspect-square bg-white border-2 border-neutral-300 text-lg flex items-center justify-center cursor-pointer";
-      board.appendChild(cell);
+      cell.className = "sudoku-cell";
+      grid.appendChild(cell);
     }
+
+    juego.appendChild(grid);
   }
+
 });
+
 
 
 window.onerror = function (message, source, lineno, colno, error) {

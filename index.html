@@ -1,89 +1,136 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sudoku FALLTEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="css/tailwind.css">
+  <title>Sudoku — Juegos Cognitivos FALLTEM</title>
+  <meta name="description" content="Sudoku cognitivo accesible para entrenar la atención y la concentración.">
+
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tokens  -->
+  <link rel="stylesheet" href="css/falltem-tokens.css">
+  <link rel="stylesheet" href="css/sudoku.css">
 
 </head>
 
-<body class="bg-neutral-100 text-neutral-900 font-sans">
+<body>
+
+  <!-- Accesibilidad -->
+  <a href="#juego" class="skip">Saltar al juego</a>
 
   <!-- Botón ayuda -->
-  <button
-    id="help-btn"
-    class="fixed top-4 right-4 w-10 h-10 rounded-full border-2 border-neutral-400 text-neutral-600 font-bold flex items-center justify-center"
-    aria-label="Ayuda"
-  >
-    ?
-  </button>
+  <div class="fab-stack">
+    <button
+      id="aboutBtn"
+      class="fab"
+      aria-label="Ayuda"
+      aria-haspopup="dialog"
+    >
+      ?
+    </button>
+  </div>
 
-  <main class="min-h-screen flex items-center justify-center p-4">
+  <!-- FONDO + CENTRADO -->
+  <main class="wrap">
 
-    <div class="bg-white rounded-xl shadow-md w-full max-w-2xl p-6">
+    <!-- CARD FALLTEM -->
+    <div class="card">
 
-      <!-- INTRO -->
-      <section id="intro-screen">
-        <p class="text-sm uppercase tracking-wide text-neutral-500 mb-2">
-          Juegos cognitivos FALLTEM
+      <!-- INTRO / HEADER -->
+      <header class="header" id="intro">
+
+        <p class="header-label">Juegos Cognitivos FALLTEM</p>
+
+        <h1 class="header-title">Sudoku</h1>
+
+        <p class="intro">
+          Este ejercicio ayuda a entrenar la <strong>atención</strong> y la
+          <strong>concentración</strong>.  
+          No hay límite de tiempo: podés hacerlo a tu propio ritmo.
         </p>
 
-        <h1 class="text-3xl font-bold mb-4">
-          Sudoku FALLTEM
-        </h1>
+        <section class="controles">
+          <button
+            id="btnComenzar"
+            class="btn principal"
+            type="button"
+          >
+            Comenzar
+          </button>
+        </section>
 
-        <p class="text-lg mb-6">
-          Este ejercicio ayuda a entrenar la atención y la concentración.
-          No hay límite de tiempo. Podés hacerlo a tu propio ritmo.
+      </header>
+
+      <!-- JUEGO (oculto hasta comenzar) -->
+      <section
+        id="juego"
+        class="juego"
+        hidden
+        aria-live="polite"
+      >
+        <!-- Tablero Sudoku irá acá -->
+      </section>
+
+      <!-- ESTADO / HUD -->
+      <section
+        id="estado"
+        class="estado"
+        aria-live="polite"
+      ></section>
+
+      <!-- FOOTER -->
+      <footer class="mini-credit">
+        <p>
+          <strong>Créditos y aviso:</strong>
+          Desarrollado por <strong>FALLTEM</strong> · Código abierto MIT ·
+          Actividad lúdica; no es práctica médica.  
+          Sin recolección de datos personales.
         </p>
-
-        <button
-          id="start-btn"
-          class="w-full bg-green-500 hover:bg-green-600 text-white text-lg font-semibold py-3 rounded-lg"
-        >
-          Comenzar
-        </button>
-      </section>
-
-      <!-- JUEGO -->
-      <section id="game-screen" class="hidden">
-
-        <h2 class="text-2xl font-bold text-center mb-4">
-          Sudoku
-        </h2>
-
-        <section
-          id="sudoku-board"
-          class="grid grid-cols-9 gap-1 mb-6 justify-center"
-        ></section>
-
-        <div class="flex justify-between">
-          <button
-            id="clear-btn"
-            class="px-4 py-2 text-base bg-neutral-200 rounded"
-          >
-            Borrar
-          </button>
-
-          <button
-            id="check-btn"
-            class="px-4 py-2 text-base bg-neutral-800 text-white rounded"
-          >
-            Verificar
-          </button>
-        </div>
-
-      </section>
+      </footer>
 
     </div>
-
   </main>
 
-  <script src="js/storage.js"></script>
-  <script src="js/sudoku-core.js"></script>
-  <script src="js/sudoku-ui.js"></script>
-</body>
+  <!-- MODAL AYUDA (placeholder) -->
+  <div
+    id="aboutModal"
+    class="modal"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+    >
 
+      <button
+        class="modal-close"
+        aria-label="Cerrar"
+      >
+        ×
+      </button>
+
+      <h2 class="modal-title">Sudoku</h2>
+
+      <div class="modal-panel">
+        <p>Información del juego próximamente.</p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn principal">Entendido</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/sudoku-ui.js"></script>
+
+</body>
 </html>

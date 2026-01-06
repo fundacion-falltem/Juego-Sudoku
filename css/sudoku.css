@@ -1,0 +1,42 @@
+/* Sudoku FALLTEM — estilos específicos (usa falltem-tokens.css) */
+
+/* Contenedor tipo Intruso */
+.wrap{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--space) * 1.2);
+}
+
+.card{
+  width: 100%;
+  max-width: 980px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  padding: calc(var(--space) * 1.4);
+}
+
+/* Tablero (lo que renderiza sudoku-ui.js) */
+.sudoku-grid{
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.sudoku-cell{
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.25rem;
+  user-select: none;
+}
