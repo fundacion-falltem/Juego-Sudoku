@@ -45,3 +45,52 @@
 .header-label--brand{
   color: var(--brand);
 }
+
+/* Sudoku board */
+
+.sudoku-grid{
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+  margin: 2rem auto;
+  max-width: 480px;
+}
+
+.sudoku-cell{
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sudoku-cell.given{
+  background: #f1f5f9;
+  cursor: default;
+}
+
+.sudoku-cell.selected{
+  outline: 3px solid var(--brand);
+}
+
+/* Keypad */
+
+.sudoku-keypad{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  max-width: 480px;
+  margin: 0 auto 1rem;
+}
+
+.sudoku-keypad button{
+  padding: 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 10px;
+}
