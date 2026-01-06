@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudoku FALLTEM</title>
+
+  <link rel="stylesheet" href="css/falltem-tokens.css" />
+  <link rel="stylesheet" href="css/main.css" />
+
+</head>
+<body>
+
+  <main class="app">
+    <h1>Sudoku FALLTEM</h1>
+
+    <p class="intro">
+      Ejercicio diario para estimular la atención y la concentración.
+      Podés hacerlo a tu propio ritmo.
+    </p>
+
+    <section id="sudoku-board" class="board">
+      <!-- tablero va acá -->
+    </section>
+
+    <section class="controls">
+      <button id="clear-btn">Borrar</button>
+      <button id="check-btn">Verificar</button>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/sudoku-core.js"></script>
+  <script src="js/sudoku-ui.js"></script>
+</body>
+</html>
