@@ -5,28 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sudoku FALLTEM</title>
 
-  <link rel="stylesheet" href="css/falltem-tokens.css" />
-  <link rel="stylesheet" href="css/main.css" />
+  <!-- Tailwind CDN (MVP, luego build si querés) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontSize: {
+            xl: '1.75rem',
+            lg: '1.25rem',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
 
-  <main class="app">
-    <h1>Sudoku FALLTEM</h1>
+<body class="bg-neutral-50 text-neutral-900 font-sans">
 
-    <p class="intro">
+  <main class="max-w-md mx-auto p-6">
+    <h1 class="text-xl font-bold text-center mb-4">
+      Sudoku FALLTEM
+    </h1>
+
+    <p class="text-base text-center mb-6">
       Ejercicio diario para estimular la atención y la concentración.
       Podés hacerlo a tu propio ritmo.
     </p>
 
-    <section id="sudoku-board" class="board">
-      <!-- tablero va acá -->
+    <section
+      id="sudoku-board"
+      class="grid grid-cols-9 gap-1 mb-6"
+    >
+      <!-- celdas -->
     </section>
 
-    <section class="controls">
-      <button id="clear-btn">Borrar</button>
-      <button id="check-btn">Verificar</button>
-    </section>
+    <div class="flex justify-between">
+      <button
+        id="clear-btn"
+        class="px-4 py-2 text-base bg-neutral-200 rounded"
+      >
+        Borrar
+      </button>
+
+      <button
+        id="check-btn"
+        class="px-4 py-2 text-base bg-neutral-800 text-white rounded"
+      >
+        Verificar
+      </button>
+    </div>
   </main>
 
   <script src="js/storage.js"></script>
