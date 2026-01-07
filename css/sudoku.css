@@ -1,128 +1,31 @@
-/* Sudoku FALLTEM — estilos específicos (usa falltem-tokens.css) */
+/* =================================================
+   SUDOKU FALLTEM — UI PRINCIPAL
+   ================================================= */
 
-/* Contenedor tipo Intruso */
-.wrap{
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start; /* 👈 antes center */
-  justify-content: center;
-  padding: calc(var(--space) * 1.5);
-  padding-top: 6vh; /* 👈 empuja el card hacia arriba */
-}
-
-.card{
-  width: 100%;
-  max-width: 980px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
-  padding: calc(var(--space) * 1.4);
-}
-
-/* Tablero (lo que renderiza sudoku-ui.js) */
-.sudoku-grid{
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 6px;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.sudoku-cell{
-  aspect-ratio: 1 / 1;
-  background: #fff;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 1.25rem;
-  user-select: none;
-}
-
-.header-label--brand{
-  color: var(--brand);
-}
-
-/* Sudoku board */
-
-.sudoku-grid{
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 6px;
-  margin: 2rem auto;
-  max-width: 480px;
-}
-
-.sudoku-cell{
-  aspect-ratio: 1 / 1;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  background: #fff;
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.sudoku-cell.given{
-  background: #f1f5f9;
-  cursor: default;
-}
-
-.sudoku-cell.selected{
-  outline: 3px solid var(--brand);
-}
-
-/* Keypad */
-
-.sudoku-keypad{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.5rem;
-  max-width: 480px;
-  margin: 0 auto 1rem;
-}
-
-.sudoku-keypad button{
-  padding: 0.8rem 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  border-radius: 10px;
-}
-
-.sudoku-cell.conflict{
-  background: #fff7cc;
-  border-color: #f5c542;
-}
-
-/* ================================
-   SUDOKU – FIX LAYOUT MOBILE
-   ================================ */
-
+/* --- Contenedor del juego --- */
 .juego {
   height: 100dvh;
   overflow: hidden;
 }
 
+/* App interna */
 .juego .sudoku-app {
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 16px;
-  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
   box-sizing: border-box;
 }
+
+/* =================================================
+   TABLERO
+   ================================================= */
 
 .juego .sudoku-game {
   flex: 1;
   display: grid;
   place-items: center;
-  min-height: 0;
 }
 
 .juego .sudoku-board {
@@ -133,46 +36,94 @@
   gap: 8px;
 }
 
-/* celdas */
+/* Celdas */
 .juego .sudoku-cell {
   aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--border);
   display: grid;
   place-items: center;
   font-size: clamp(18px, 4.5vw, 28px);
-  border-radius: 12px;
-  background: #fff;
-  border: 1px solid #dcdcdc;
+  font-weight: 700;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* celda seleccionada */
-.juego .sudoku-cell.is-selected {
-  background: #fff6d6;
-  outline: 3px solid #f2c94c;
+/* Celdas fijas */
+.juego .sudoku-cell.is-fixed {
+  background: #f1f5f9;
+  cursor: default;
 }
 
-/* ================================
-   KEYPAD
-   ================================ */
+/* Celda seleccionada */
+.juego .sudoku-cell.is-selected {
+  background: #fff6d6;
+  outline: 3px solid var(--brand);
+}
+
+/* Conflicto */
+.juego .sudoku-cell.conflict {
+  background: #fff0f0;
+  outline: 2px solid #f5b5b5;
+}
+
+/* Mismo número */
+.juego .sudoku-cell.same-number {
+  background: #eef3ff;
+}
+
+/* =================================================
+   KEYPAD CONTEXTUAL
+   ================================================= */
 
 .juego .sudoku-keypad {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  width: min(92vw, 420px);
+
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 12px;
-  padding-top: 14px;
-  padding-bottom: env(safe-area-inset-bottom);
-  position: sticky;
-  bottom: 0;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(6px);
+
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.juego .sudoku-keypad.is-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .juego .sudoku-key {
   height: 56px;
   font-size: 22px;
+  font-weight: 700;
   border-radius: 14px;
   border: none;
   background: #e6eefc;
   color: #1a4fd8;
+}
+
+/* =================================================
+   MOBILE CHICO (iPhone SE)
+   ================================================= */
+
+@media (max-width: 380px) {
+  .juego .sudoku-app {
+    padding: 8px;
+  }
+
+  .juego .sudoku-board {
+    width: 96vw;
+    gap: 6px;
+  }
 }
