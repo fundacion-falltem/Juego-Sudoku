@@ -22,7 +22,7 @@
   <!-- Accesibilidad -->
   <a href="#juego" class="skip">Saltar al juego</a>
 
-  <!-- Botón ayuda (NO lo tocamos) -->
+  <!-- Botón ayuda (NO se toca) -->
   <div class="fab-stack">
     <button
       id="aboutBtn"
@@ -38,14 +38,9 @@
     <!-- CARD -->
     <div class="card">
 
-      <!-- =====================
-           INTRO
-           ===================== -->
+      <!-- INTRO -->
       <header class="header" id="intro">
-
-        <p class="header-label header-label--brand">
-          Juegos Cognitivos FALLTEM
-        </p>
+        <p class="header-label header-label--brand">Juegos Cognitivos FALLTEM</p>
 
         <h1 class="header-title">Sudoku</h1>
 
@@ -64,12 +59,11 @@
             Comenzar
           </button>
         </section>
-
       </header>
 
-      <!-- =====================
+      <!-- =========================
            JUEGO
-           ===================== -->
+           ========================= -->
       <section
         id="juego"
         class="juego"
@@ -77,34 +71,40 @@
         aria-live="polite"
       >
 
-        <!-- CONTENEDOR MAESTRO DEL JUEGO -->
-        <div class="sudoku-container">
+        <!-- CONTENEDOR DEL JUEGO (CLAVE) -->
+        <div class="game-container">
 
-          <!-- TABLERO -->
-          <div
-            id="sudoku-board"
-            class="sudoku-board"
-            aria-label="Tablero de Sudoku"
-          >
-            <!-- Celdas 9x9 se generan por JS -->
+          <!-- APP SUDOKU -->
+          <div class="sudoku-app">
+
+            <!-- TABLERO -->
+            <div class="sudoku-game">
+              <div
+                id="sudoku-board"
+                class="sudoku-board"
+                aria-label="Tablero de Sudoku"
+              >
+                <!-- Celdas generadas por JS -->
+              </div>
+            </div>
+
+            <!-- KEYPAD -->
+            <div
+              class="sudoku-keypad"
+              aria-label="Selector de números"
+            >
+              <button class="sudoku-key">1</button>
+              <button class="sudoku-key">2</button>
+              <button class="sudoku-key">3</button>
+              <button class="sudoku-key">4</button>
+              <button class="sudoku-key">5</button>
+              <button class="sudoku-key">6</button>
+              <button class="sudoku-key">7</button>
+              <button class="sudoku-key">8</button>
+              <button class="sudoku-key">9</button>
+            </div>
+
           </div>
-
-          <!-- KEYPAD -->
-          <div
-            class="sudoku-keypad"
-            aria-label="Selector de números"
-          >
-            <button class="sudoku-key">1</button>
-            <button class="sudoku-key">2</button>
-            <button class="sudoku-key">3</button>
-            <button class="sudoku-key">4</button>
-            <button class="sudoku-key">5</button>
-            <button class="sudoku-key">6</button>
-            <button class="sudoku-key">7</button>
-            <button class="sudoku-key">8</button>
-            <button class="sudoku-key">9</button>
-          </div>
-
         </div>
       </section>
 
