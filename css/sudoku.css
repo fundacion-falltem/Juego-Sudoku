@@ -1,14 +1,18 @@
 /* =================================================
    SUDOKU FALLTEM — UI PRINCIPAL
+   DEBUG: CACHE TEST v2 (2026-01-07)
    ================================================= */
 
-/* --- Contenedor del juego --- */
+/* =================================================
+   CONTENEDOR DEL JUEGO
+   ================================================= */
+
 .juego {
+  position: relative;
   height: 100dvh;
   overflow: hidden;
 }
 
-/* App interna */
 .juego .sudoku-app {
   height: 100%;
   display: flex;
@@ -33,7 +37,7 @@
   aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
 /* Celdas */
@@ -71,6 +75,19 @@
 /* Mismo número */
 .juego .sudoku-cell.same-number {
   background: #eef3ff;
+}
+
+/* =================================================
+   SEPARADORES DE CUADRANTES 3×3
+   ================================================= */
+
+.juego .sudoku-cell:nth-child(3n) {
+  margin-right: 6px;
+}
+
+.juego .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+.juego .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+  margin-bottom: 6px;
 }
 
 /* =================================================
@@ -125,5 +142,34 @@
   .juego .sudoku-board {
     width: 96vw;
     gap: 6px;
+  }
+}
+
+/* =================================================
+   DESKTOP — VUELVE AL CARD
+   ================================================= */
+
+@media (min-width: 768px) {
+  .juego {
+    height: auto;
+    overflow: visible;
+  }
+
+  .juego .sudoku-app {
+    position: static;
+    padding: 0;
+  }
+
+  .juego .sudoku-game {
+    margin-top: 2rem;
+  }
+
+  .juego .sudoku-keypad {
+    position: static;
+    transform: none;
+    margin: 2rem auto 0;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: none;
   }
 }
