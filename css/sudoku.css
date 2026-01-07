@@ -1,36 +1,24 @@
 /* =================================================
-   SUDOKU FALLTEM — UI PRINCIPAL
-   DEBUG: CACHE TEST v2 (2026-01-07)
+   SUDOKU FALLTEM — UI COMPLETA
+   Versión estable · Mobile first · 2026-01-07
    ================================================= */
 
-/* =================================================
+/* ================================
    CONTENEDOR DEL JUEGO
-   ================================================= */
+   ================================ */
 
 .juego {
   position: relative;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-.juego .sudoku-app {
-  height: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  padding-bottom: env(safe-area-inset-bottom);
-  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* =================================================
+/* ================================
    TABLERO
-   ================================================= */
-
-.juego .sudoku-game {
-  flex: 1;
-  display: grid;
-  place-items: center;
-}
+   ================================ */
 
 .juego .sudoku-board {
   width: min(92vw, 520px);
@@ -38,19 +26,29 @@
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 6px;
+  margin: 0 auto;
 }
 
-/* Celdas */
+/* ================================
+   CELDAS
+   ================================ */
+
 .juego .sudoku-cell {
   aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 12px;
-  background: #fff;
-  border: 1px solid var(--border);
-  display: grid;
-  place-items: center;
+
   font-size: clamp(18px, 4.5vw, 28px);
   font-weight: 700;
+  color: #0f172a;
+
   user-select: none;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -63,7 +61,8 @@
 /* Celda seleccionada */
 .juego .sudoku-cell.is-selected {
   background: #fff6d6;
-  outline: 3px solid var(--brand);
+  outline: 3px solid #f2c94c;
+  z-index: 2;
 }
 
 /* Conflicto */
@@ -72,43 +71,52 @@
   outline: 2px solid #f5b5b5;
 }
 
-/* Mismo número */
-.juego .sudoku-cell.same-number {
-  background: #eef3ff;
+/* ================================
+   BLOQUES 3×3 (CLARIDAD VISUAL)
+   Inspirado en convención Sudoku
+   ================================ */
+
+/* Bordes verticales fuertes */
+.juego .sudoku-cell:nth-child(9n + 1),
+.juego .sudoku-cell:nth-child(9n + 4),
+.juego .sudoku-cell:nth-child(9n + 7) {
+  border-left-width: 3px;
 }
 
-/* =================================================
-   SEPARADORES DE CUADRANTES 3×3
-   ================================================= */
-
-.juego .sudoku-cell:nth-child(3n) {
-  margin-right: 6px;
+.juego .sudoku-cell:nth-child(9n) {
+  border-right-width: 3px;
 }
 
-.juego .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
-.juego .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
-  margin-bottom: 6px;
+/* Bordes horizontales fuertes */
+.juego .sudoku-cell:nth-child(n + 1):nth-child(-n + 9),
+.juego .sudoku-cell:nth-child(n + 28):nth-child(-n + 36),
+.juego .sudoku-cell:nth-child(n + 55):nth-child(-n + 63) {
+  border-top-width: 3px;
 }
 
-/* =================================================
+.juego .sudoku-cell:nth-child(n + 73):nth-child(-n + 81) {
+  border-bottom-width: 3px;
+}
+
+/* ================================
    KEYPAD CONTEXTUAL
-   ================================================= */
+   ================================ */
 
 .juego .sudoku-keypad {
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 12px;
   transform: translateX(-50%);
-  width: min(92vw, 420px);
 
+  width: min(92vw, 420px);
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 12px;
 
   padding: 14px;
   border-radius: 18px;
-  background: rgba(255,255,255,0.98);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
   opacity: 0;
   pointer-events: none;
@@ -124,52 +132,45 @@
   height: 56px;
   font-size: 22px;
   font-weight: 700;
+
   border-radius: 14px;
   border: none;
+
   background: #e6eefc;
   color: #1a4fd8;
+  cursor: pointer;
 }
 
-/* =================================================
-   MOBILE CHICO (iPhone SE)
-   ================================================= */
+/* ================================
+   MOBILE PEQUEÑO (iPhone SE)
+   ================================ */
 
 @media (max-width: 380px) {
-  .juego .sudoku-app {
-    padding: 8px;
-  }
-
   .juego .sudoku-board {
     width: 96vw;
-    gap: 6px;
+    gap: 5px;
+  }
+
+  .juego .sudoku-key {
+    height: 48px;
+    font-size: 20px;
   }
 }
 
-/* =================================================
-   DESKTOP — VUELVE AL CARD
-   ================================================= */
+/* ================================
+   DESKTOP
+   ================================ */
 
 @media (min-width: 768px) {
   .juego {
-    height: auto;
-    overflow: visible;
-  }
-
-  .juego .sudoku-app {
-    position: static;
-    padding: 0;
-  }
-
-  .juego .sudoku-game {
-    margin-top: 2rem;
+    padding-bottom: 40px;
   }
 
   .juego .sudoku-keypad {
     position: static;
     transform: none;
-    margin: 2rem auto 0;
+    margin-top: 24px;
     opacity: 1;
     pointer-events: auto;
-    box-shadow: none;
   }
 }
