@@ -12,10 +12,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tokens -->
+  <!-- Tokens base -->
   <link rel="stylesheet" href="css/falltem-tokens.css">
+
+  <!-- Layout + Juego -->
   <link rel="stylesheet" href="css/sudoku.css?v=4">
-  <link rel="stylesheet" href="css/sudoku-layout.css?v=1">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
   <!-- Accesibilidad -->
   <a href="#juego" class="skip">Saltar al juego</a>
 
-  <!-- Botón ayuda (NO se toca) -->
+  <!-- Botón ayuda -->
   <div class="fab-stack">
     <button
       id="aboutBtn"
@@ -36,7 +37,7 @@
   <!-- CONTENEDOR GENERAL -->
   <main class="wrap">
 
-    <!-- CARD -->
+    <!-- CARD INTRO -->
     <div class="card">
 
       <!-- INTRO -->
@@ -47,7 +48,7 @@
 
         <p class="intro">
           Este ejercicio ayuda a entrenar la <strong>atención</strong> y la
-          <strong>concentración</strong>.  
+          <strong>concentración</strong>.
           No hay límite de tiempo: podés hacerlo a tu propio ritmo.
         </p>
 
@@ -65,37 +66,48 @@
       <!-- =========================
            JUEGO
            ========================= -->
-          <section id="juego" class="juego" hidden aria-live="polite">
+      <section
+        id="juego"
+        class="juego"
+        hidden
+        aria-live="polite"
+      >
+        <!-- STAGE DE JUEGO -->
+        <div class="game-stage">
 
-          <div class="sudoku-layout"> 
+          <!-- APP SUDOKU -->
+          <div class="sudoku-app">
 
-            <div class="sudoku-app">
-
-              <div class="sudoku-game">
-                <div
-                  id="sudoku-board"
-                  class="sudoku-board"
-                  aria-label="Tablero de Sudoku"
-                ></div>
+            <!-- TABLERO -->
+            <div class="sudoku-game">
+              <div
+                id="sudoku-board"
+                class="sudoku-board"
+                aria-label="Tablero de Sudoku"
+              >
+                <!-- Celdas por JS -->
               </div>
+            </div>
 
-              <div class="sudoku-keypad" aria-label="Selector de números">
-                <button class="sudoku-key">1</button>
-                <button class="sudoku-key">2</button>
-                <button class="sudoku-key">3</button>
-                <button class="sudoku-key">4</button>
-                <button class="sudoku-key">5</button>
-                <button class="sudoku-key">6</button>
-                <button class="sudoku-key">7</button>
-                <button class="sudoku-key">8</button>
-                <button class="sudoku-key">9</button>
-              </div>
-
+            <!-- KEYPAD -->
+            <div
+              class="sudoku-keypad"
+              aria-label="Selector de números"
+            >
+              <button class="sudoku-key">1</button>
+              <button class="sudoku-key">2</button>
+              <button class="sudoku-key">3</button>
+              <button class="sudoku-key">4</button>
+              <button class="sudoku-key">5</button>
+              <button class="sudoku-key">6</button>
+              <button class="sudoku-key">7</button>
+              <button class="sudoku-key">8</button>
+              <button class="sudoku-key">9</button>
             </div>
 
           </div>
-        </section>
-
+        </div>
+      </section>
 
       <!-- ESTADO -->
       <section
@@ -109,7 +121,7 @@
         <p>
           <strong>Créditos y aviso:</strong>
           Desarrollado por <strong>FALLTEM</strong> · Código abierto MIT ·
-          Actividad lúdica; no es práctica médica.  
+          Actividad lúdica; no es práctica médica.
           Sin recolección de datos personales.
         </p>
       </footer>
