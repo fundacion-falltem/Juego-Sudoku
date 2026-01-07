@@ -1,0 +1,50 @@
+/* =================================================
+   SUDOKU FALLTEM — GAME LAYOUT
+   Mobile first · Layout soberano
+   ================================================= */
+
+/* El juego no hereda el layout editorial */
+.juego {
+  padding: 0;
+}
+
+/* CONTENEDOR SOBERANO DEL JUEGO */
+.sudoku-layout {
+  min-height: calc(100dvh - 120px); /* deja respirar header */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+/* APP */
+.sudoku-app {
+  width: 100%;
+  max-width: 420px; /* mobile controlado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* TABLERO CENTRADO */
+.sudoku-game {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ================================
+   DESKTOP
+   ================================ */
+
+@media (min-width: 768px) {
+  .sudoku-layout {
+    min-height: auto;
+    padding-top: 32px;
+  }
+
+  .sudoku-app {
+    max-width: 560px;
+  }
+}

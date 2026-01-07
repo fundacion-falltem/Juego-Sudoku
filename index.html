@@ -15,6 +15,7 @@
   <!-- Tokens -->
   <link rel="stylesheet" href="css/falltem-tokens.css">
   <link rel="stylesheet" href="css/sudoku.css?v=4">
+  <link rel="stylesheet" href="css/sudoku-layout.css?v=1">
 </head>
 
 <body>
@@ -64,49 +65,37 @@
       <!-- =========================
            JUEGO
            ========================= -->
-      <section
-        id="juego"
-        class="juego"
-        hidden
-        aria-live="polite"
-      >
+          <section id="juego" class="juego" hidden aria-live="polite">
 
-        <!-- CONTENEDOR DEL JUEGO (CLAVE) -->
-        <div class="game-container">
+          <div class="sudoku-layout"> 
 
-          <!-- APP SUDOKU -->
-          <div class="sudoku-app">
+            <div class="sudoku-app">
 
-            <!-- TABLERO -->
-            <div class="sudoku-game">
-              <div
-                id="sudoku-board"
-                class="sudoku-board"
-                aria-label="Tablero de Sudoku"
-              >
-                <!-- Celdas generadas por JS -->
+              <div class="sudoku-game">
+                <div
+                  id="sudoku-board"
+                  class="sudoku-board"
+                  aria-label="Tablero de Sudoku"
+                ></div>
               </div>
-            </div>
 
-            <!-- KEYPAD -->
-            <div
-              class="sudoku-keypad"
-              aria-label="Selector de números"
-            >
-              <button class="sudoku-key">1</button>
-              <button class="sudoku-key">2</button>
-              <button class="sudoku-key">3</button>
-              <button class="sudoku-key">4</button>
-              <button class="sudoku-key">5</button>
-              <button class="sudoku-key">6</button>
-              <button class="sudoku-key">7</button>
-              <button class="sudoku-key">8</button>
-              <button class="sudoku-key">9</button>
+              <div class="sudoku-keypad" aria-label="Selector de números">
+                <button class="sudoku-key">1</button>
+                <button class="sudoku-key">2</button>
+                <button class="sudoku-key">3</button>
+                <button class="sudoku-key">4</button>
+                <button class="sudoku-key">5</button>
+                <button class="sudoku-key">6</button>
+                <button class="sudoku-key">7</button>
+                <button class="sudoku-key">8</button>
+                <button class="sudoku-key">9</button>
+              </div>
+
             </div>
 
           </div>
-        </div>
-      </section>
+        </section>
+
 
       <!-- ESTADO -->
       <section
