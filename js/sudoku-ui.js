@@ -41,17 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render principal
   // =====================
   function render() {
-    juego.innerHTML = "";
+    juego.querySelector(".sudoku-board").innerHTML = "";
     renderBoard();
-    renderKeypad();
   }
 
   // =====================
   // Tablero
   // =====================
   function renderBoard() {
-    const grid = document.createElement("div");
-    grid.className = "sudoku-grid";
+    const board = document.getElementById("sudoku-board");
 
     state.current.forEach((value, index) => {
       const cell = document.createElement("div");
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cell.dataset.index = index;
 
       if (state.given[index]) {
-        cell.classList.add("given");
+        cell.classList.add("is-fixed");
         cell.textContent = value;
       } else {
         cell.textContent = value === 0 ? "" : value;
@@ -71,47 +69,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (state.selected === index) {
-        cell.classList.add("selected");
+        cell.classList.add("is-selected");
       }
 
       if (state.conflicts.has(index)) {
         cell.classList.add("conflict");
       }
 
-      grid.appendChild(cell);
+      board.appendChild(cell);
     });
-
-    juego.appendChild(grid);
   }
 
   // =====================
   // Keypad
   // =====================
-  function renderKeypad() {
-    const pad = document.createElement("div");
-    pad.className = "sudoku-keypad";
-
-    for (let n = 1; n <= 9; n++) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.textContent = n;
-
-      btn.addEventListener("click", () => {
-        placeNumber(n);
-      });
-
-      pad.appendChild(btn);
-    }
-
-    const erase = document.createElement("button");
-    erase.type = "button";
-    erase.textContent = "⌫";
-
-    erase.addEventListener("click", clearCell);
-    pad.appendChild(erase);
-
-    juego.appendChild(pad);
-  }
+  document.querySelectorAll(".sudoku-key").forEach(btn => {
+    btn.addEventListener("click", () => {
+      placeNumber(Number(btn.textContent));
+    });
+  });
 
   // =====================
   // Acciones
@@ -125,15 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  function clearCell() {
-    if (state.selected === null) return;
-    if (state.given[state.selected]) return;
-
-    state.current[state.selected] = 0;
-    updateConflicts();
-    render();
-  }
-
   // =====================
   // Conflictos suaves
   // =====================
@@ -142,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     state.current.forEach((value, index) => {
       if (value === 0) return;
-
       if (!isValidPlacement(state.current, index, value)) {
         state.conflicts.add(index);
       }
@@ -150,9 +116,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
-
-window.onerror = function (message, source, lineno, colno, error) {
-  console.error("FALLTEM Sudoku error:", message, lineno);
-};
-

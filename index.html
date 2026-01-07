@@ -2,7 +2,7 @@
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <title>Sudoku — Juegos Cognitivos FALLTEM</title>
   <meta name="description" content="Sudoku cognitivo accesible para entrenar la atención y la concentración.">
@@ -12,10 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tokens  -->
+  <!-- Tokens -->
   <link rel="stylesheet" href="css/falltem-tokens.css">
   <link rel="stylesheet" href="css/sudoku.css">
-
 </head>
 
 <body>
@@ -23,27 +22,24 @@
   <!-- Accesibilidad -->
   <a href="#juego" class="skip">Saltar al juego</a>
 
-  <!-- Botón ayuda -->
+  <!-- Botón ayuda (NO lo tocamos) -->
   <div class="fab-stack">
     <button
       id="aboutBtn"
       class="fab"
       aria-label="Ayuda"
       aria-haspopup="dialog"
-    >
-      ?
-    </button>
+    >?</button>
   </div>
 
-  <!-- FONDO + CENTRADO -->
+  <!-- CONTENEDOR GENERAL -->
   <main class="wrap">
 
-    <!-- CARD FALLTEM -->
+    <!-- CARD -->
     <div class="card">
 
-      <!-- INTRO / HEADER -->
+      <!-- INTRO -->
       <header class="header" id="intro">
-
         <p class="header-label header-label--brand">Juegos Cognitivos FALLTEM</p>
 
         <h1 class="header-title">Sudoku</h1>
@@ -63,20 +59,52 @@
             Comenzar
           </button>
         </section>
-
       </header>
 
-      <!-- JUEGO (oculto hasta comenzar) -->
+      <!-- =========================
+           JUEGO
+           ========================= -->
       <section
         id="juego"
         class="juego"
         hidden
         aria-live="polite"
       >
-        <!-- Tablero Sudoku irá acá -->
+
+        <!-- APP SUDOKU -->
+        <div class="sudoku-app">
+
+          <!-- ZONA TABLERO -->
+          <div class="sudoku-game">
+            <div
+              id="sudoku-board"
+              class="sudoku-board"
+              aria-label="Tablero de Sudoku"
+            >
+              <!-- Celdas 9x9 se generan por JS -->
+            </div>
+          </div>
+
+          <!-- KEYPAD FIJO -->
+          <div
+            class="sudoku-keypad"
+            aria-label="Selector de números"
+          >
+            <button class="sudoku-key">1</button>
+            <button class="sudoku-key">2</button>
+            <button class="sudoku-key">3</button>
+            <button class="sudoku-key">4</button>
+            <button class="sudoku-key">5</button>
+            <button class="sudoku-key">6</button>
+            <button class="sudoku-key">7</button>
+            <button class="sudoku-key">8</button>
+            <button class="sudoku-key">9</button>
+          </div>
+
+        </div>
       </section>
 
-      <!-- ESTADO / HUD -->
+      <!-- ESTADO -->
       <section
         id="estado"
         class="estado"
@@ -96,7 +124,7 @@
     </div>
   </main>
 
-  <!-- MODAL AYUDA (placeholder) -->
+  <!-- MODAL AYUDA -->
   <div
     id="aboutModal"
     class="modal"
@@ -108,13 +136,7 @@
       aria-modal="true"
       tabindex="-1"
     >
-
-      <button
-        class="modal-close"
-        aria-label="Cerrar"
-      >
-        ×
-      </button>
+      <button class="modal-close" aria-label="Cerrar">×</button>
 
       <h2 class="modal-title">Sudoku</h2>
 
@@ -125,13 +147,11 @@
       <div class="modal-actions">
         <button class="btn principal">Entendido</button>
       </div>
-
     </div>
   </div>
 
   <!-- JS -->
   <script type="module" src="js/sudoku-ui.js"></script>
-
 
 </body>
 </html>
