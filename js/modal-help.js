@@ -1,29 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
   const aboutBtn = document.getElementById("aboutBtn");
   const modal = document.getElementById("aboutModal");
-  const closeBtn = modal?.querySelector(".modal-close");
-  const confirmBtn = modal?.querySelector(".modal-actions .btn");
 
-  // Abrir modal
-  aboutBtn?.addEventListener("click", () => {
-    modal.setAttribute("aria-hidden", "false");
+  if (!aboutBtn || !modal) return;
+
+  const closeBtn = modal.querySelector(".modal-close");
+  const confirmBtn = modal.querySelector(".modal-actions .btn");
+
+  // =========================
+  // Abrir / cerrar modal
+  // =========================
+  aboutBtn.addEventListener("click", () => {
     modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
   });
 
-  // Cerrar modal
   function closeModal() {
-    modal.setAttribute("aria-hidden", "true");
     modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
   }
 
   closeBtn?.addEventListener("click", closeModal);
   confirmBtn?.addEventListener("click", closeModal);
 
-  // ==========================
-  // SOLAPAS
-  // ==========================
-  const tabs = modal.querySelectorAll(".tab");
-  const panels = modal.querySelectorAll(".tab-panel");
+  // =========================
+  // SOLAPAS (TABS)
+  // =========================
+  const tabs = modal.querySelectorAll(".modal-tab");
+  const panels = modal.querySelectorAll(".modal-panel");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
@@ -33,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tabs.forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
 
-      // mostrar panel correcto
+      // mostrar panel correspondiente
       panels.forEach(panel => {
         if (panel.dataset.panel === target) {
           panel.hidden = false;

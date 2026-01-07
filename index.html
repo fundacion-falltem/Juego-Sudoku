@@ -16,11 +16,11 @@
   <link rel="stylesheet" href="css/falltem-tokens.css">
   <link rel="stylesheet" href="css/game-shell.css">
   <link rel="stylesheet" href="css/sudoku.css">
+  <link rel="stylesheet" href="css/sudoku-modal.css">
 </head>
 
 <body>
 
-  <!-- Accesibilidad -->
   <a href="#juego" class="skip">Saltar al juego</a>
 
   <!-- Botón ayuda -->
@@ -33,9 +33,7 @@
     >?</button>
   </div>
 
-  <!-- CONTENEDOR GENERAL -->
   <main class="wrap">
-
     <div class="card">
 
       <!-- INTRO -->
@@ -51,19 +49,13 @@
         </p>
 
         <section class="controles">
-          <button
-            id="btnComenzar"
-            class="btn principal"
-            type="button"
-          >
+          <button id="btnComenzar" class="btn principal" type="button">
             Comenzar
           </button>
         </section>
       </header>
 
-      <!-- =========================
-           JUEGO
-           ========================= -->
+      <!-- JUEGO -->
       <section
         id="juego"
         class="juego juego-sudoku"
@@ -71,7 +63,6 @@
         aria-live="polite"
       >
         <div class="game-shell">
-
           <div class="sudoku-app">
 
             <div class="sudoku-game">
@@ -98,14 +89,8 @@
         </div>
       </section>
 
-      <!-- ESTADO -->
-      <section
-        id="estado"
-        class="estado"
-        aria-live="polite"
-      ></section>
+      <section id="estado" class="estado" aria-live="polite"></section>
 
-      <!-- FOOTER -->
       <footer class="mini-credit">
         <p>
           <strong>Créditos y aviso:</strong>
@@ -118,77 +103,46 @@
     </div>
   </main>
 
-  <!-- =========================
-       MODAL AYUDA
-       ========================= -->
-  <div
-    id="aboutModal"
-    class="modal"
-    aria-hidden="true"
-  >
-    <div
-      class="modal-card"
-      role="dialog"
-      aria-modal="true"
-      tabindex="-1"
-    >
+  <!-- MODAL AYUDA -->
+  <div id="aboutModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1">
+
       <button class="modal-close" aria-label="Cerrar">×</button>
 
       <h2 class="modal-title">Sudoku</h2>
 
-      <!-- SOLAPAS -->
       <div class="modal-tabs">
-        <button class="tab active" data-tab="como">¿Cómo se juega?</button>
-        <button class="tab" data-tab="porque">¿Por qué este juego?</button>
+        <button class="modal-tab active" data-tab="como">¿Cómo se juega?</button>
+        <button class="modal-tab" data-tab="porque">¿Por qué este juego?</button>
       </div>
 
-      <!-- CONTENIDO -->
       <div class="modal-content">
 
-        <!-- CÓMO SE JUEGA -->
-        <div class="tab-panel active" data-panel="como">
-          <p>
-            El objetivo es completar la cuadrícula 9×9 con números del 1 al 9.
-          </p>
-
-          <p>
-            Cada número debe aparecer una sola vez en:
-          </p>
-
+        <div class="modal-panel active" data-panel="como">
+          <p>El objetivo es completar la cuadrícula 9×9 con números del 1 al 9.</p>
           <ul>
-            <li>cada fila</li>
-            <li>cada columna</li>
-            <li>cada bloque de 3×3</li>
+            <li>una sola vez por fila</li>
+            <li>una sola vez por columna</li>
+            <li>una sola vez por bloque 3×3</li>
           </ul>
-
           <p>
-            Tocá una celda vacía y elegí un número del selector inferior.
+            Tocá una celda vacía y elegí un número.
             Si no cumple las reglas, se marcará como conflicto.
           </p>
-
-          <p>
-            No hay límite de tiempo: jugá a tu ritmo.
-          </p>
+          <p>No hay límite de tiempo.</p>
         </div>
 
-        <!-- POR QUÉ ESTE JUEGO -->
-        <div class="tab-panel" data-panel="porque" hidden>
+        <div class="modal-panel" data-panel="porque" hidden>
           <p>
-            Este ejercicio entrena principalmente el
-            <strong>razonamiento lógico</strong>,
-            la <strong>memoria de trabajo</strong>,
-            la <strong>atención concentrada</strong>
-            y la <strong>resolución de problemas</strong>.
+            Este ejercicio entrena el <strong>razonamiento lógico</strong>,
+            la <strong>memoria de trabajo</strong> y la
+            <strong>atención concentrada</strong>.
           </p>
-
           <p>
-            Al analizar la cuadrícula, buscar patrones y aplicar reglas deductivas,
-            se fortalecen procesos cognitivos utilizados en programas de
-            entrenamiento mental.
+            Requiere planificar pasos, detectar patrones y aplicar reglas deductivas.
           </p>
-
           <p class="disclaimer">
-            Actividad lúdica: no constituye práctica médica.
+            Actividad lúdica. No constituye práctica médica.
             No se recolectan datos personales.
           </p>
         </div>
