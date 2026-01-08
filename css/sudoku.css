@@ -162,3 +162,24 @@
     margin: 1.2rem auto;
   }
 }
+
+/* =========================
+   Keypad – ajuste mobile
+   ========================= */
+.sudoku-keypad {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.sudoku-keypad {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+@media (max-width: 480px) {
+  .sudoku-keypad {
+    padding: 0.75rem;
+  }
+}

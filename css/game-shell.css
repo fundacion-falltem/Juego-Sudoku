@@ -162,3 +162,12 @@ section.juego {
   font-size: 0.85rem;
   color: var(--muted, #64748b);
 }
+
+/* =========================
+   Ajuste FAB ayuda – Mobile
+   ========================= */
+@media (max-width: 480px) {
+  section.juego .game-shell {
+    padding-top: clamp(3.5rem, 10vw, 4.5rem);
+  }
+}
