@@ -1,0 +1,22 @@
+/* =========================================
+   Sudoku – Feedback visual
+   ========================================= */
+
+#sudoku-feedback {
+  margin: 0 auto 0.75rem;
+  max-width: 520px;
+
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+
+  font-size: 0.95rem;
+  text-align: center;
+  color: #0f172a;
+}
+
+#sudoku-feedback[hidden] {
+  display: none;
+}

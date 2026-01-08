@@ -1,5 +1,6 @@
 import { SUDOKU_DATA } from "./sudoku-data.js";
 import { isValidPlacement } from "./sudoku-core.js";
+import { createSudokuFeedback } from "./sudoku-feedback.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -30,13 +31,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =====================
+  // Feedback
+  // =====================
+  const feedback = createSudokuFeedback();
+
+  // =====================
   // Inicio del juego
   // =====================
   btnComenzar.addEventListener("click", () => {
     intro.hidden = true;
     juego.hidden = false;
+
+    state.current = [...state.puzzle];
+    state.selected = null;
+    state.conflicts.clear();
+
     updateConflicts();
+    feedback.reset();
     render();
+    updateFeedback();
   });
 
   // =====================
@@ -69,17 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // celda seleccionada
+      // Celda seleccionada
       if (state.selected === index) {
         cell.classList.add("is-selected");
       }
 
-      // conflicto directo
+      // Conflicto
       if (state.conflicts.has(index)) {
         cell.classList.add("conflict");
       }
 
-      // mismo número (feedback visual)
+      // Mismo número (ayuda visual)
       if (
         state.selected !== null &&
         state.current[index] !== 0 &&
@@ -113,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateConflicts();
     hideKeypad();
     render();
+    updateFeedback();
   }
 
   // =====================
@@ -127,6 +141,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isValidPlacement(state.current, index, value)) {
         state.conflicts.add(index);
       }
+    });
+  }
+
+  // =====================
+  // Feedback
+  // =====================
+  function updateFeedback() {
+    const emptyCells = state.current.filter(v => v === 0).length;
+    const solved = emptyCells === 0 && state.conflicts.size === 0;
+
+    feedback.update({
+      conflicts: state.conflicts.size,
+      emptyCells,
+      solved
     });
   }
 

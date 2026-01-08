@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/game-shell.css">
   <link rel="stylesheet" href="css/sudoku.css">
   <link rel="stylesheet" href="css/sudoku-modal.css">
+  <link rel="stylesheet" href="css/sudoku-feedback.css">
 </head>
 
 <body>
@@ -65,12 +66,19 @@
         <div class="game-shell">
           <div class="sudoku-app">
 
-            <div class="sudoku-game">
-              <div
-                id="sudoku-board"
-                class="sudoku-board"
-                aria-label="Tablero de Sudoku"
-              ></div>
+            <!-- Feedback de estado (errores / progreso / final) -->
+            <div
+              id="sudoku-feedback"
+              aria-live="polite"
+              hidden
+            ></div>
+
+            <!-- Tablero -->
+            <div
+              id="sudoku-board"
+              class="sudoku-board"
+              aria-label="Tablero de Sudoku"
+            ></div>
             </div>
 
             <div class="sudoku-keypad" aria-label="Selector de números">
