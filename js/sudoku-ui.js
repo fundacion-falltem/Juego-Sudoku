@@ -205,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // DEBUG (solo desarrollo)
   // =====================
-  window.__SUDOKU_DEBUG__ = {
-    getState: () => state
-  };
+  //window.__SUDOKU_DEBUG__ = {
+  //  getState: () => state
+  //};
 
 });
