@@ -1,6 +1,8 @@
 import { SUDOKU_DATA } from "./sudoku-data.js";
 import { isValidPlacement } from "./sudoku-core.js";
 import { createSudokuFeedback } from "./sudoku-feedback.js";
+import { generateSudoku } from "./sudoku-generator.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -43,9 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
     intro.hidden = true;
     juego.hidden = false;
 
-    // Reset de estado
-    state.current = [...state.puzzle];
-    state.given = state.puzzle.map(v => v !== 0);
+    // 🔄 Generar nuevo Sudoku
+    const { puzzle, solution } = generateSudoku({ clues: 40 });
+
+    state.puzzle = puzzle;
+    state.solution = solution;
+    state.current = [...puzzle];
+    state.given = puzzle.map(v => v !== 0);
     state.selected = null;
     state.conflicts.clear();
 
@@ -54,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
     updateFeedback();
   });
+
 
   // =====================
   // Render principal
@@ -194,5 +201,12 @@ document.addEventListener("DOMContentLoaded", () => {
       btnComenzar.click();
     });
   }
+
+  // =====================
+  // DEBUG (solo desarrollo)
+  // =====================
+  window.__SUDOKU_DEBUG__ = {
+    getState: () => state
+  };
 
 });
