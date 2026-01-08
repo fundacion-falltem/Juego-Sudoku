@@ -1,9 +1,11 @@
 // sudoku-feedback.js
-// Maneja mensajes de feedback (errores, progreso, final)
+// Feedback emocional y acciones finales del Sudoku
 
 export function createSudokuFeedback() {
-  const el = document.getElementById("sudoku-feedback");
-  if (!el) {
+  const feedbackEl = document.getElementById("sudoku-feedback");
+  const actionsEl = document.getElementById("sudoku-actions");
+
+  if (!feedbackEl) {
     console.warn("Sudoku feedback element not found");
     return {
       update: () => {},
@@ -14,44 +16,55 @@ export function createSudokuFeedback() {
   let showedAlmost = false;
   let showedSolved = false;
 
-  function show(msg) {
-    el.textContent = msg;
-    el.hidden = false;
+  function showMessage(msg) {
+    feedbackEl.innerHTML = msg;
+    feedbackEl.hidden = false;
   }
 
-  function hide() {
-    el.textContent = "";
-    el.hidden = true;
+  function hideMessage() {
+    feedbackEl.innerHTML = "";
+    feedbackEl.hidden = true;
+  }
+
+  function showActions() {
+    if (actionsEl) actionsEl.hidden = false;
+  }
+
+  function hideActions() {
+    if (actionsEl) actionsEl.hidden = true;
   }
 
   return {
     reset() {
       showedAlmost = false;
       showedSolved = false;
-      hide();
+      hideMessage();
+      hideActions();
     },
 
     update({ conflicts, emptyCells, solved }) {
-      // Prioridad 1: error
+      // 1️⃣ Error
       if (conflicts > 0) {
-        show("Ese número no cumple las reglas.");
+        showMessage("🙂 Ups, probá con otro número.");
+        hideActions();
         return;
       }
 
-      // Si no hay conflictos, limpiamos error
-      hide();
+      // Limpiar mensaje de error
+      hideMessage();
 
-      // Prioridad 2: casi terminado (una sola vez)
+      // 2️⃣ Cerca del final (una sola vez)
       if (!showedAlmost && emptyCells <= 5 && emptyCells > 0) {
-        show("Ya falta poco.");
+        showMessage("🙂 ¡Genial! Ya estás cerca.");
         showedAlmost = true;
         return;
       }
 
-      // Prioridad 3: final
+      // 3️⃣ Final
       if (!showedSolved && solved) {
-        show("¡Muy bien! Completaste el Sudoku.");
+        showMessage("🥳 Woow!! ¡Excelente trabajo! 🥳<br><small>Completaste el Sudoku.</small>");
         showedSolved = true;
+        showActions();
       }
     }
   };

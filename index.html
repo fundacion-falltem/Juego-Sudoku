@@ -22,6 +22,7 @@
 
 <body>
 
+  <!-- Accesibilidad -->
   <a href="#juego" class="skip">Saltar al juego</a>
 
   <!-- Botón ayuda -->
@@ -34,6 +35,7 @@
     >?</button>
   </div>
 
+  <!-- CONTENEDOR GENERAL -->
   <main class="wrap">
     <div class="card">
 
@@ -56,7 +58,9 @@
         </section>
       </header>
 
-      <!-- JUEGO -->
+      <!-- =========================
+           JUEGO
+           ========================= -->
       <section
         id="juego"
         class="juego juego-sudoku"
@@ -64,23 +68,39 @@
         aria-live="polite"
       >
         <div class="game-shell">
+
           <div class="sudoku-app">
 
-            <!-- Feedback de estado (errores / progreso / final) -->
-            <div
-              id="sudoku-feedback"
-              aria-live="polite"
-              hidden
-            ></div>
+            <!-- ZONA JUEGO -->
+            <div class="sudoku-game">
 
-            <!-- Tablero -->
-            <div
-              id="sudoku-board"
-              class="sudoku-board"
-              aria-label="Tablero de Sudoku"
-            ></div>
+              <!-- Feedback -->
+              <div id="sudoku-feedback" aria-live="polite" hidden></div>
+
+              <!-- Acciones finales -->
+              <div id="sudoku-actions" class="sudoku-actions" hidden>
+                <button id="btnNuevoSudoku" class="btn principal" type="button">
+                  Nuevo Sudoku
+                </button>
+
+                <a
+                  href="https://falltem.org/actividades/"
+                  class="btn secundario"
+                >
+                  Volver a actividades
+                </a>
+              </div>
+
+              <!-- Tablero -->
+              <div
+                id="sudoku-board"
+                class="sudoku-board"
+                aria-label="Tablero de Sudoku"
+              ></div>
+
             </div>
 
+            <!-- KEYPAD -->
             <div class="sudoku-keypad" aria-label="Selector de números">
               <button class="sudoku-key">1</button>
               <button class="sudoku-key">2</button>
@@ -97,8 +117,10 @@
         </div>
       </section>
 
+      <!-- ESTADO (si se usa más adelante) -->
       <section id="estado" class="estado" aria-live="polite"></section>
 
+      <!-- FOOTER -->
       <footer class="mini-credit">
         <p>
           <strong>Créditos y aviso:</strong>
@@ -111,7 +133,9 @@
     </div>
   </main>
 
-  <!-- MODAL AYUDA -->
+  <!-- =========================
+       MODAL AYUDA
+       ========================= -->
   <div id="aboutModal" class="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" tabindex="-1">
 

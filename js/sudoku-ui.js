@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const juego = document.getElementById("juego");
   const board = document.getElementById("sudoku-board");
   const keypad = document.querySelector(".sudoku-keypad");
+  const btnNuevo = document.getElementById("btnNuevoSudoku");
 
   if (!btnComenzar || !intro || !juego || !board || !keypad) {
     console.error("FALLTEM Sudoku: elementos base no encontrados");
@@ -42,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     intro.hidden = true;
     juego.hidden = false;
 
+    // Reset de estado
     state.current = [...state.puzzle];
+    state.given = state.puzzle.map(v => v !== 0);
     state.selected = null;
     state.conflicts.clear();
 
@@ -176,10 +179,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       state.selected !== null &&
       !e.target.closest(".sudoku-cell") &&
-      !e.target.closest(".sudoku-keypad")
+      !e.target.closest(".sudoku-keypad") &&
+      !e.target.closest(".sudoku-game")
     ) {
       hideKeypad();
     }
   });
+
+  // =====================
+  // Botón "Nuevo Sudoku"
+  // =====================
+  if (btnNuevo) {
+    btnNuevo.addEventListener("click", () => {
+      btnComenzar.click();
+    });
+  }
 
 });
